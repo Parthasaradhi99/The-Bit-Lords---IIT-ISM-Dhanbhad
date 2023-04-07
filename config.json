@@ -1,0 +1,6 @@
+{
+    "params":
+        {"host":"localhost",
+        "port":27017,
+        "timeout":1000}
+}
