@@ -9,4 +9,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/auth')
+def auth():
+    return render_template("auth.html")
+
+
 app.run(debug=True)
