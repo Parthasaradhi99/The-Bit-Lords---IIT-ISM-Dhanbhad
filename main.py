@@ -27,7 +27,7 @@ try:
 
 except Exception as ex:
     print(ex)
-    
+
 
 @app.route('/')
 def index():
@@ -43,10 +43,13 @@ def save(x):
     code = 500
     status = "fail"
     try:
-        data = request.get_json()
-        check = db[x].count_documents({"email": data['email']})
+        admission_number = request.form['admin']
+        password = request.form['password']
+        data = {"admission_number":f"{admission_number}","password":f"{password}"}
+
+        check = db[x].count_documents({"admission_number": data['admission_number']})
         if check>= 1:
-            message = "user with that email exists"
+            message = "user with that admission_number exists"
             code = 401
             status = "fail"
         else:
@@ -74,8 +77,10 @@ def login(x):
     code = 500
     status = "fail"
     try:
-        data = request.get_json()
-        user = db[x].find_one({"email": f'{data["email"]}'})
+        admission_number = request.form['admin']
+        password = request.form['password']
+        data = {"admission_number":f"{admission_number}","password":f"{password}"}
+        user = db[x].find_one({"admission_number": f'{data["admission_number"]}'})
 
         if user:
             user['_id'] = str(user['_id'])
@@ -83,7 +88,7 @@ def login(x):
                 time = datetime.utcnow() + timedelta(hours=24)
                 token = jwt.encode({
                         "user": {
-                            "email": f"{user['email']}",
+                            "admission_number": f"{user['admission_number']}",
                             "id": f"{user['_id']}",
                         },
                         "exp": time

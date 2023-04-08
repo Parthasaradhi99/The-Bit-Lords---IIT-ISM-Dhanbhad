@@ -5,10 +5,10 @@
 <div class="main container my-4">
     <input type="checkbox" id="chk" aria-hidden="true">
 
-        <div class="signup">
+        <div class="signup form">
             <form action="/signup/{{v}}" method="POST">
                 <label for="chk" aria-hidden="true">Sign up</label>
-                <input type="email" name="email" placeholder="Email" required="">
+                <input type="text" name="admin" placeholder="Admission Number" required="">
                 <input type="password" name="password" placeholder="Password" required="">
                 <button type="submit">Sign up</button>
             </form>
@@ -16,7 +16,7 @@
         <div class="login">
             <form action="/login/{{v}}" method="POST">
                 <label for="chk" aria-hidden="true">Login</label>
-                <input type="email" name="email" placeholder="Email" required="">
+                <input type="text" name="admin" placeholder="Admission Number" required="">
                 <input type="password" name="password" placeholder="Password" required="">
                 <button type="submit">Login</button>
             </form>
