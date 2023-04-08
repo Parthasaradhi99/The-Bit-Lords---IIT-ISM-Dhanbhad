@@ -45,7 +45,7 @@ def save(x):
     try:
         admission_number = request.form['admin']
         password = request.form['password']
-        data = {"admission_number":f"{admission_number}","password":f"{password}"}
+        data = {"admission_number":f"{admission_number}","password":f"{password}","subjects":[]}
 
         check = db[x].count_documents({"admission_number": data['admission_number']})
         if check>= 1:
@@ -133,7 +133,19 @@ def teacher_dashboard(id):
     return render_template("teacher_dashboard.html",id=id)
 
 
-@app.route("/teacher/<id>/new")
+@app.route("/teacher/<id>/new",methods=['POST','GET'])
 def new_class(id):
+    if request.method == 'POST':
+        # professor_name = request.form['name']
+        # camera_url = request.form['prof_name']
+        # subject = request.form['subject']
+        # subject_code = request.form['subject_code']
+        f = request.files['excell']
+        data_xls = pd.read_excel(f)
+        data = data_xls.to_json(orient="records")
+        for d in data:
+            d['Age']='0'
+        return data
+
     return render_template("new_class.html",id=id)
 app.run(debug=True)

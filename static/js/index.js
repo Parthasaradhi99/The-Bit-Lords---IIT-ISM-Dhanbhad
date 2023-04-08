@@ -1,17 +1,10 @@
-// const formE1 = document.querySelector('form');
-
-// 		formE1.addEventListener('submit', event => {
-// 			event.preventDefault();
-// 			const formData = new FormData(formE1);
-// 			const data = Object.fromEntries(formData);
-
-// 			fetch('https://reqres.in/api/users', {
-// 				method: 'POST',
-// 				headers: {
-// 					'Content-Type': 'application/json'
-// 				},
-// 				body: JSON.stringify(data)
-// 			}).then(res => res.json())
-// 				.then(data => console.log(data))
-// 				.catch(error => console.log(error))	;
-// 		});
+document.getElementById("folder").addEventListener("change", function(event) {
+    var output = document.querySelector("ul");
+    var files = event.target.files;
+  
+    for (var i=0; i<files.length; i++) {
+      var item = document.createElement("li");
+      item.innerHTML = files[i].webkitRelativePath;
+      output.appendChild(item);
+    };
+  }, false);
