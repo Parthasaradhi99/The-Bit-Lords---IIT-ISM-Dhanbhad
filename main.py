@@ -1,4 +1,4 @@
-from flask import Flask,Response,request,jsonify,render_template
+from flask import Flask,Response,request,jsonify,render_template,redirect
 import pymongo,json,jwt
 from flask_bcrypt import Bcrypt
 from datetime import datetime,timedelta
@@ -57,19 +57,24 @@ def save(x):
             data['password'] = bcrypt.generate_password_hash(data['password'])
             data['created'] = datetime.now()
 
-            #this is bad practice since the data is not being checked before insert
             res = db[x].insert_one(data) 
             if res.acknowledged:
                 status = "successful"
                 message = "user created successfully"
                 code = 201
+                if(x=="teacher"):
+                    url = "/teacher/"+admission_number
+                    return redirect(url)
+                else:
+                    url = "/student/"+admission_number
+                    return redirect(url)
     except Exception as ex:
         message = f"{ex}"
         status = "fail"
         code = 500
     return jsonify({'status': status, "message": message}), 200
 
-#Route to Login for students 
+#Route to Login for students
 @app.route('/login/<string:x>', methods=['POST'])
 def login(x):
     message = ""
@@ -101,6 +106,12 @@ def login(x):
                 status = "successful"
                 res_data['token'] = token
                 res_data['user'] = user
+                if(x=="teacher"):
+                    url = "/teacher/"+admission_number
+                    return redirect(url)
+                else:
+                    url = "/student/"+admission_number
+                    return redirect(url)
 
             else:
                 message = "wrong password"
@@ -117,4 +128,12 @@ def login(x):
         status = "fail"
     return jsonify({'status': status, "data": res_data, "message":message}), code
 
+@app.route("/teacher/<id>")
+def teacher_dashboard(id):
+    return render_template("teacher_dashboard.html",id=id)
+
+
+@app.route("/teacher/<id>/new")
+def new_class(id):
+    return render_template("new_class.html",id=id)
 app.run(debug=True)
