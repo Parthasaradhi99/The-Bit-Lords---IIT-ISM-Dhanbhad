@@ -323,3 +323,77 @@ a {
   color: #4f6ddc;
   background-color: #FAFAFA;
 }
+
+/* Tutorial CSS*/
+
+.h1-heading{
+  text-align:center;
+}
+.zero{
+  position:relative;
+  margin:50px 0 30px 0;
+  
+}
+.one{
+  font-family: 'Kumbh Sans', sans-serif;
+  line-height: 2;
+  width:50%;
+  height:100%;
+  margin:auto;
+  display:inline-block;
+  
+  padding:16px;
+}
+.two{
+  width:40%;
+  height:100%;
+  display:inline-block;
+ margin-bottom: 0;
+ position:absolute;
+ right:16px;
+}
+.three{
+  margin:50px auto;
+  text-align:center;
+  
+}
+.four{
+  text-decoration:none;  
+color:blue;
+}
+.five{
+  text-align: center; 
+  margin:auto;
+}
+.seven{
+  text-align: center;
+  margin:0 auto;
+}
+.eight{
+  width:50%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 5px 2.6px 2.5px; 
+  border-radius: 12px;
+}
+.nine{
+  text-align:left;
+  margin:80px 25% 25px;
+  font-size: larger;
+}
+.ten{
+  text-align: center;
+  margin:0 auto; 
+}
+.twelve{
+  text-align: center;
+  margin:0 auto;
+}
+.thirteen{
+  width:50%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 5px 2.6px 2.5px; 
+  border-radius: 12px;
+}
+.fourteen{
+  text-align:left;
+  margin:80px 25% 25px;
+  font-size: larger;
+}

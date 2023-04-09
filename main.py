@@ -132,6 +132,10 @@ def login(x):
 def teacher_dashboard(id):
     return render_template("teacher_dashboard.html",id=id)
 
+@app.route("/student/<id>")
+def student_dashboard(id):
+    return render_template("student_dashboard.html",id=id)
+
 
 @app.route("/teacher/<id>/new",methods=['POST','GET'])
 def new_class(id):
@@ -143,9 +147,12 @@ def new_class(id):
         f = request.files['excell']
         data_xls = pd.read_excel(f)
         data = data_xls.to_json(orient="records")
-        for d in data:
-            d['Age']='0'
+        db['class'].insert_many(data)
         return data
-
     return render_template("new_class.html",id=id)
+
+@app.route("/tutorial")
+def tutorial():
+    return render_template('tutorial.html')
+    
 app.run(debug=True)
