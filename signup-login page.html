@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Signup credentials page</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="User name" required>
+					<input type="email" name="email1" placeholder="Email" required>
+					<input type="password" name="pswd1" placeholder="Password" required>
+					<button>Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email2" placeholder="Email" required>
+					<input type="password" name="pswd2" placeholder="Password" required>
+					<button>Login</button>
+				</form>
+			</div>
+	</div>
+
+	<script>
+		const formE1 = document.querySelector('.form');
+
+		formE1.addEventListener('submit', event => {
+			event.preventDefault();
+
+			const formData = new FormData(fornE1);
+			const data = Object.fromEntries(formData);
+
+			fetch('https://reqres.in/api/users', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			}).then(res => res.json())
+				.then(data => console.logdata())
+				.catch(error => console.log(error))	;
+		});
+	</script>
+</body>
+</html>
